@@ -1,5 +1,6 @@
 import { UserService } from './user_service'
-import { FakeUserRepository } from '../infrastructure/repositories/fake_user_repository'
+import { FakeUserRepository } from '../../infrastructure/repositories/fake_user_repository'
+import { User } from '../../domain/entities/user';
 
 describe('UserService', () => {
   let userService: UserService;
@@ -21,5 +22,16 @@ describe('UserService', () => {
     expect(user).not.toBeNull()
     expect(user?.getId()).toBe('1')
     expect(user?.getName()).toBe('John Doe')
+  })
+
+  it('deve salvar um novo usuário com sucesso usando repositório fake e buscando novamente', async () => {
+    const newUser = new User('3', 'Test User');
+    await fakeUserRepository.save(newUser)
+    
+    const user = await userService.findUserById('3');
+    
+    expect(user).not.toBeNull()
+    expect(user?.getId()).toBe('3')
+    expect(user?.getName()).toBe('Test User')
   })
 })
