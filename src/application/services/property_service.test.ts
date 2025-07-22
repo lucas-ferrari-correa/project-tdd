@@ -12,7 +12,7 @@ describe('PropertyService', () => {
   })
 
   it('deve retornar null quando um ID inválido for passado', async () => {
-    const property = await propertyService.findByPropertyId('999')
+    const property = await propertyService.findPropertyById('999')
     expect(property).toBeNull()
   })
 
@@ -26,7 +26,7 @@ describe('PropertyService', () => {
     )
     await fakePropertyRepository.save(newProperty)
 
-    const property = await propertyService.findByPropertyId('3')
+    const property = await propertyService.findPropertyById('3')
     expect(property).not.toBeNull()
     expect(property?.getId()).toBe('3')
     expect(property?.getName()).toBe('Test Property')

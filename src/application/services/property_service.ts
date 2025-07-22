@@ -6,7 +6,7 @@ export class PropertyService {
     private readonly propertyRepository: PropertyRepository
   ) {}
 
-  async findByPropertyId(id: string): Promise<Property | null> {
+  async findPropertyById(id: string): Promise<Property | null> {
     return this.propertyRepository.findById(id)
   }
 }
