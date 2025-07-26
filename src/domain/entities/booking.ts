@@ -56,6 +56,10 @@ export class Booking {
     return this.dateRange
   }
 
+  getGuest(): User {
+    return this.guest
+  }
+
   getGuestCount(): number {
     return this.guestCount
   }
