@@ -1,5 +1,8 @@
+import { Booking } from "../../../domain/entities/booking";
 import { Property } from "../../../domain/entities/property";
+import { BookingEntity } from "../entities/booking_entity";
 import { PropertyEntity } from "../entities/property_entity";
+import { BookingMapper } from "./booking_mapper";
 
 export class PropertyMapper {
   static toDomain(entity: PropertyEntity): Property {

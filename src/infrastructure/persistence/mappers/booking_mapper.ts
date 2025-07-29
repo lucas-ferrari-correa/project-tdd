@@ -7,8 +7,24 @@ import { UserMapper } from "./user_mapper";
 
 export class BookingMapper {
   static toDomain(entity: BookingEntity, property?: Property): Booking {
+    if (!entity.guest) {
+      throw new Error('Hóspede é obrigatório')
+    }
+
+    if (!entity.startDate) {
+      throw new Error('Data de início é obrigatória')
+    }
+
+    if (!entity.endDate) {
+      throw new Error('Data de término é obrigatória')
+    }
+
     const guest = UserMapper.toDomain(entity.guest);
     const dateRange = new DateRange(entity.startDate, entity.endDate);
+
+    if (!property && !entity.property) {
+      throw new Error('Propriedade é obrigatória')
+    }
 
     const booking = new Booking(
       entity.id,
